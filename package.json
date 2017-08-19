@@ -1,0 +1,30 @@
+{
+  "name": "game-of-life",
+  "version": "1.0.0",
+  "description": "Game of Life",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eemmzz/game-of-life.git"
+  },
+  "keywords": [
+    "game",
+    "of",
+    "life",
+    "conway"
+  ],
+  "author": "github.com/eemmzz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eemmzz/game-of-life/issues"
+  },
+  "homepage": "https://github.com/eemmzz/game-of-life#readme",
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "mocha": "^3.5.0",
+    "sinon": "^3.2.1"
+  }
+}
