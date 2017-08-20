@@ -57,5 +57,30 @@ describe('Game of life', () => {
                 'Expected live cell to be killed due to underpopulation'
             );
         });
+
+        it('Should kill a live cell if overpopulated (more than 3 neighbours)', () => {
+            // Given
+            const initialState = [
+                [0, 1, 0],
+                [0, 1, 1],
+                [0, 1, 1]
+            ];
+
+            // When
+            const evolvedState = evolve(initialState);
+
+            // Then
+            const expectedState  = [
+                [0, 1, 0],
+                [0, 0, 1],
+                [0, 1, 1]
+            ];
+
+            assert.deepEqual(
+                evolvedState,
+                expectedState,
+                'Expected middle cell to be killed due to overpopulation'
+            );
+        });
     });
 });
