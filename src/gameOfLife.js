@@ -4,6 +4,7 @@ const DEAD = 0;
 const LIVE = 1;
 const UNDER_POPULATION_THRESHOLD = 2;
 const OVER_POPULATION_THRESHOLD = 3;
+const LIFE_CREATION_VALUE = 3;
 
 function getLiveNeighbourCount(grid, x, y) {
     let liveNeighbourCount = 0;
@@ -28,12 +29,16 @@ module.exports = {
 
         for (let x = 0; x < newState.length; x++) {
             for (let y = 0; y < newState[x].length; y++) {
+                const numberOfLiveNeighbours = getLiveNeighbourCount(newState, x, y);
+
                 if (newState[x][y] === DEAD) {
+                    if (numberOfLiveNeighbours === LIFE_CREATION_VALUE) {
+                        newState[x][y] = LIVE;
+                    }
                     continue;
                 }
 
-                const numberOfLiveNeighbours = getLiveNeighbourCount(newState, x, y);
-
+                // Handle live cells
                 if (numberOfLiveNeighbours < UNDER_POPULATION_THRESHOLD) {
                     newState[x][y] = DEAD;
                 } else if (numberOfLiveNeighbours > OVER_POPULATION_THRESHOLD) {
