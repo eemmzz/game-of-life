@@ -82,5 +82,55 @@ describe('Game of life', () => {
                 'Expected middle cell to be killed due to overpopulation'
             );
         });
+
+        it('Should let the cell survive if it has exactly 2 neighbours', () => {
+            // Given
+            const initialState = [
+                [0, 0, 0],
+                [0, 0, 1],
+                [0, 1, 1]
+            ];
+
+            // When
+            const evolvedState = evolve(initialState);
+
+            // Then
+            const expectedState  = [
+                [0, 0, 0],
+                [0, 0, 1],
+                [0, 1, 1]
+            ];
+
+            assert.deepEqual(
+                evolvedState,
+                expectedState,
+                'Expected all cells to survive'
+            );
+        });
+
+        it('Should let the cell survive if it has exactly 3 neighbours', () => {
+            // Given
+            const initialState = [
+                [0, 1, 1],
+                [0, 1, 1],
+                [0, 0, 0]
+            ];
+
+            // When
+            const evolvedState = evolve(initialState);
+
+            // Then
+            const expectedState  = [
+                [0, 1, 1],
+                [0, 1, 1],
+                [0, 0, 0]
+            ];
+
+            assert.deepEqual(
+                evolvedState,
+                expectedState,
+                'Expected all cells to survive'
+            );
+        });
     });
 });
