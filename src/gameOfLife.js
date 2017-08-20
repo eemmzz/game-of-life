@@ -3,20 +3,20 @@
 const DEAD = 0;
 const LIVE = 1;
 const UNDER_POPULATION_THRESHOLD = 2;
+const OVER_POPULATION_THRESHOLD = 3;
 
 function getLiveNeighbourCount(grid, x, y) {
     let liveNeighbourCount = 0;
 
-    liveNeighbourCount += grid[x - 1][y - 1]; // top left
-    liveNeighbourCount += grid[x - 1][y + 1]; // bottom left
-    liveNeighbourCount += grid[x][y - 1]; // above
-    liveNeighbourCount += grid[x][y + 1]; // below
-    liveNeighbourCount += grid[x + 1][y - 1]; // top right
-    liveNeighbourCount += grid[x + 1][y + 1]; // bottom right
-    liveNeighbourCount += grid[x - 1][y]; // left of
-    liveNeighbourCount += grid[x + 1][y]; // right of
+    liveNeighbourCount += (grid[x - 1] || [])[y - 1] || 0; // top left
+    liveNeighbourCount += (grid[x - 1] || [])[y + 1] || 0; // bottom left
+    liveNeighbourCount += grid[x][y - 1] || 0; // above
+    liveNeighbourCount += grid[x][y + 1] || 0; // below
+    liveNeighbourCount += (grid[x + 1] || [])[y - 1] || 0; // top right
+    liveNeighbourCount += (grid[x + 1] || [])[y + 1] || 0; // bottom right
+    liveNeighbourCount += (grid[x - 1] || [])[y] || 0; // left of
+    liveNeighbourCount += (grid[x + 1] || [])[y] || 0; // right of
 
-    console.log('count!', liveNeighbourCount);
     return liveNeighbourCount;
 }
 
@@ -35,6 +35,8 @@ module.exports = {
                 const numberOfLiveNeighbours = getLiveNeighbourCount(newState, x, y);
 
                 if (numberOfLiveNeighbours < UNDER_POPULATION_THRESHOLD) {
+                    newState[x][y] = DEAD;
+                } else if (numberOfLiveNeighbours > OVER_POPULATION_THRESHOLD) {
                     newState[x][y] = DEAD;
                 }
             }
