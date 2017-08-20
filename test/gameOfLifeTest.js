@@ -2,7 +2,6 @@
 
 const assert = require('assert');
 const mocha = require('mocha');
-const sinon = require('sinon');
 
 const evolve = require('../src/gameOfLife').evolve;
 
@@ -158,7 +157,7 @@ describe('Game of life', () => {
             );
         });
 
-        it('Should spin 3 vertical live cells to be horizontal (spinner)', () => {
+        it('Should spin 3 vertical live cells to be horizontal (oscillator)', () => {
             // Given
             const initialState = [
                 [0, 0, 0],
@@ -183,7 +182,7 @@ describe('Game of life', () => {
             );
         });
 
-        it('Should spin 3 vertical live cells to be horizontal and back (spinner)', () => {
+        it('Should spin 3 vertical live cells to be horizontal and back (oscillator)', () => {
             // Given
             const initialState = [
                 [0, 0, 0],
@@ -206,6 +205,35 @@ describe('Game of life', () => {
                 secondEvolvedState,
                 expectedState,
                 'Expected spinner to rotate to be horizontal then vertical'
+            );
+        });
+
+        it('Should handle more complex grid and larger grid size', () => {
+            // Given
+            const initialState = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0],
+                [0, 0, 0, 1, 0],
+                [0, 1, 1, 1, 0]
+            ];
+
+            // When
+            const evolvedState = evolve(initialState);
+
+            // Then
+            const expectedState  = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 1, 0, 1, 0],
+                [0, 0, 1, 1, 0]
+            ];
+
+            assert.deepEqual(
+                evolvedState,
+                expectedState,
+                `Expected state to be ${expectedState}`
             );
         });
     });

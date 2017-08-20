@@ -36,13 +36,12 @@ module.exports = {
                         newState[x][y] = LIVE;
                     }
                     continue;
-                }
-
-                // Handle live cells
-                if (numberOfLiveNeighbours < UNDER_POPULATION_THRESHOLD) {
+                } else {
+                    if (numberOfLiveNeighbours < UNDER_POPULATION_THRESHOLD) {
                     newState[x][y] = DEAD;
-                } else if (numberOfLiveNeighbours > OVER_POPULATION_THRESHOLD) {
-                    newState[x][y] = DEAD;
+                    } else if (numberOfLiveNeighbours > OVER_POPULATION_THRESHOLD) {
+                        newState[x][y] = DEAD;
+                    }
                 }
             }
         }

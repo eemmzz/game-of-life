@@ -24,7 +24,6 @@
   "homepage": "https://github.com/eemmzz/game-of-life#readme",
   "devDependencies": {
     "assert": "^1.4.1",
-    "mocha": "^3.5.0",
-    "sinon": "^3.2.1"
+    "mocha": "^3.5.0"
   }
 }
