@@ -157,7 +157,7 @@ describe('Game of life', () => {
             );
         });
 
-        it('Should spin 3 vertical live cells to be horizontal (oscillator)', () => {
+        it('Should spin 3 vertical live cells to be horizontal (blinker)', () => {
             // Given
             const initialState = [
                 [0, 0, 0],
@@ -182,7 +182,7 @@ describe('Game of life', () => {
             );
         });
 
-        it('Should spin 3 vertical live cells to be horizontal and back (oscillator)', () => {
+        it('Should spin 3 vertical live cells to be horizontal and back (blinker)', () => {
             // Given
             const initialState = [
                 [0, 0, 0],
@@ -205,6 +205,53 @@ describe('Game of life', () => {
                 secondEvolvedState,
                 expectedState,
                 'Expected spinner to rotate to be horizontal then vertical'
+            );
+        });
+
+        it('Should oscillate between beacon pattern on 6x6 grid', () => {
+            // Given
+            const initialState = [
+                [0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0],
+                [0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0]
+            ];
+
+            // When
+            const firstEvolvedState = evolve(initialState);
+            const secondEvolvedState = evolve(firstEvolvedState)
+
+            // Then
+            const expectedFirstState  = [
+                [0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0],
+                [0, 1, 0, 0, 0, 0],
+                [0, 0, 0, 0, 1, 0],
+                [0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0]
+            ];
+
+            assert.deepEqual(
+                firstEvolvedState,
+                expectedFirstState,
+                'Expected beacon pattern to oscillate on 6x6'
+            );
+
+            const expectedSecondState  = [
+                [0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0],
+                [0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0]
+            ];
+
+            assert.deepEqual(
+                secondEvolvedState,
+                expectedSecondState,
+                'Expected beacon pattern to oscillate on 6x6'
             );
         });
 

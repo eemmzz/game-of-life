@@ -2,6 +2,7 @@
 
 const DEAD = 0;
 const LIVE = 1;
+
 const UNDER_POPULATION_THRESHOLD = 2;
 const OVER_POPULATION_THRESHOLD = 3;
 const LIFE_CREATION_VALUE = 3;
