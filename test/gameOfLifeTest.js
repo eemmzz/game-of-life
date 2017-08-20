@@ -71,9 +71,9 @@ describe('Game of life', () => {
 
             // Then
             const expectedState  = [
-                [0, 1, 0],
-                [0, 0, 1],
-                [0, 1, 1]
+                [0, 1, 1],
+                [1, 0, 0],
+                [0, 1, 0]
             ];
 
             assert.deepEqual(
@@ -97,7 +97,7 @@ describe('Game of life', () => {
             // Then
             const expectedState  = [
                 [0, 0, 0],
-                [0, 0, 1],
+                [0, 1, 1],
                 [0, 1, 1]
             ];
 
