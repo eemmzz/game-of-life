@@ -27,11 +27,11 @@ module.exports = {
             return row.slice();
         });
 
-        for (let x = 0; x < newState.length; x++) {
-            for (let y = 0; y < newState[x].length; y++) {
-                const numberOfLiveNeighbours = getLiveNeighbourCount(newState, x, y);
+        for (let x = 0; x < currentState.length; x++) {
+            for (let y = 0; y < currentState[x].length; y++) {
+                const numberOfLiveNeighbours = getLiveNeighbourCount(currentState, x, y);
 
-                if (newState[x][y] === DEAD) {
+                if (currentState[x][y] === DEAD) {
                     if (numberOfLiveNeighbours === LIFE_CREATION_VALUE) {
                         newState[x][y] = LIVE;
                     }

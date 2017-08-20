@@ -73,7 +73,7 @@ describe('Game of life', () => {
             const expectedState  = [
                 [0, 1, 1],
                 [1, 0, 0],
-                [0, 1, 0]
+                [0, 1, 1]
             ];
 
             assert.deepEqual(
@@ -155,6 +155,57 @@ describe('Game of life', () => {
                 evolvedState,
                 expectedState,
                 'Expected a fourth cell to be set to alive'
+            );
+        });
+
+        it('Should spin 3 vertical live cells to be horizontal (spinner)', () => {
+            // Given
+            const initialState = [
+                [0, 0, 0],
+                [1, 1, 1],
+                [0, 0, 0]
+            ];
+
+            // When
+            const evolvedState = evolve(initialState);
+
+            // Then
+            const expectedState  = [
+                [0, 1, 0],
+                [0, 1, 0],
+                [0, 1, 0]
+            ];
+
+            assert.deepEqual(
+                evolvedState,
+                expectedState,
+                'Expected spinner to rotate to be horizontal'
+            );
+        });
+
+        it('Should spin 3 vertical live cells to be horizontal and back (spinner)', () => {
+            // Given
+            const initialState = [
+                [0, 0, 0],
+                [1, 1, 1],
+                [0, 0, 0]
+            ];
+
+            // When
+            const firstEvolvedState = evolve(initialState);
+            const secondEvolvedState = evolve(firstEvolvedState)
+
+            // Then
+            const expectedState  = [
+                [0, 0, 0],
+                [1, 1, 1],
+                [0, 0, 0]
+            ];
+
+            assert.deepEqual(
+                secondEvolvedState,
+                expectedState,
+                'Expected spinner to rotate to be horizontal then vertical'
             );
         });
     });
