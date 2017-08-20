@@ -132,5 +132,30 @@ describe('Game of life', () => {
                 'Expected all cells to survive'
             );
         });
+
+        it('Should revive a dead cell if it has exactly 3 neighbours', () => {
+            // Given
+            const initialState = [
+                [0, 1, 0],
+                [1, 1, 0],
+                [0, 0, 0]
+            ];
+
+            // When
+            const evolvedState = evolve(initialState);
+
+            // Then
+            const expectedState  = [
+                [1, 1, 0],
+                [1, 1, 0],
+                [0, 0, 0]
+            ];
+
+            assert.deepEqual(
+                evolvedState,
+                expectedState,
+                'Expected a fourth cell to be set to alive'
+            );
+        });
     });
 });
