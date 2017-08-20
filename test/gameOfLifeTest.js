@@ -236,5 +236,57 @@ describe('Game of life', () => {
                 `Expected state to be ${expectedState}`
             );
         });
+
+        it('Should handle still life on larger 6x5 grid (beehive)', () => {
+            // Given
+            const initialState = [
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 1, 1, 0, 0],
+                [0, 1, 0, 0, 1, 0],
+                [0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 0, 0, 0]
+            ];
+
+            // When
+            const evolvedState = evolve(initialState);
+
+            // Then
+            const expectedState  = [
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 1, 1, 0, 0],
+                [0, 1, 0, 0, 1, 0],
+                [0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 0, 0, 0]
+            ];
+
+            assert.deepEqual(
+                evolvedState,
+                expectedState,
+                `Expected state to be ${expectedState}`
+            );
+        });
+
+        it('Should handle still life scenario on smaller grid', () => {
+            // Given
+            const initialState = [
+                [1, 1],
+                [1, 1]
+            ];
+
+            // When
+            const evolvedState = evolve(initialState);
+
+            // Then
+            const expectedState  = [
+                [1, 1],
+                [1, 1]
+            ];
+
+            assert.deepEqual(
+                evolvedState,
+                expectedState,
+                'Expected life to remain still on 2x2 grid'
+            );
+        });
     });
 });
