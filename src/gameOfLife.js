@@ -35,10 +35,9 @@ module.exports = {
                     if (numberOfLiveNeighbours === LIFE_CREATION_VALUE) {
                         newState[x][y] = LIVE;
                     }
-                    continue;
                 } else {
                     if (numberOfLiveNeighbours < UNDER_POPULATION_THRESHOLD) {
-                    newState[x][y] = DEAD;
+                        newState[x][y] = DEAD;
                     } else if (numberOfLiveNeighbours > OVER_POPULATION_THRESHOLD) {
                         newState[x][y] = DEAD;
                     }
